@@ -198,27 +198,48 @@ export default {
         // Un problème Airtable ne bloque pas la génération.
         let logged = true;
 
+        let airtableDebug = null;
+
         try {
+
           await logToAirtable(
+
             date,
+
             problem,
+
             output.subject,
+
             output.body,
+
             env
+
           );
+
         } catch (error) {
+
           logged = false;
 
+          airtableDebug = error?.message || String(error);
+
           console.error(
+
             "Airtable logging failed:",
-            error?.message,
-            error?.stack
+
+            airtableDebug
+
           );
+
         }
 
         return json({
+
           ...output,
+
           logged,
+
+          airtableDebug,
+
         });
       } catch (error) {
         console.error(
