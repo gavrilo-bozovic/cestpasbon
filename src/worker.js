@@ -33,6 +33,7 @@ function requireEnv(env, names) {
 
 async function generateEmail(date, problem, env) {
   requireEnv(env, ["OPENAI_API_KEY"]);
+
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {
@@ -42,17 +43,42 @@ async function generateEmail(date, problem, env) {
     body: JSON.stringify({
       model: env.OPENAI_MODEL || "gpt-5-mini",
       instructions: SYSTEM_PROMPT,
-      input: `Date de l'incident : ${date}\nProblème rapporté : ${problem}`,
-      text: { format: { type: "json_object" } },
+      input: `Retourne la réponse au format JSON demandé dans les instructions.
+
+Date de l'incident : ${date}
+Problème rapporté : ${problem}`,
+      text: {
+        format: {
+          type: "json_object"
+        }
+      },
     }),
   });
 
-  if (!response.ok) throw new Error(`OpenAI ${response.status}: ${await response.text()}`);
+  if (!response.ok) {
+    throw new Error(
+      `OpenAI ${response.status}: ${await response.text()}`
+    );
+  }
+
   const data = await response.json();
-  const text = data.output_text || data.output?.flatMap((item) => item.content || []).find((item) => item.type === "output_text")?.text;
-  if (!text) throw new Error("Réponse OpenAI vide");
+
+  const text =
+    data.output_text ||
+    data.output
+      ?.flatMap((item) => item.content || [])
+      .find((item) => item.type === "output_text")?.text;
+
+  if (!text) {
+    throw new Error("Réponse OpenAI vide");
+  }
+
   const parsed = JSON.parse(text);
-  if (!parsed.subject || !parsed.body) throw new Error("Réponse OpenAI incomplète");
+
+  if (!parsed.subject || !parsed.body) {
+    throw new Error("Réponse OpenAI incomplète");
+  }
+
   return parsed;
 }
 
