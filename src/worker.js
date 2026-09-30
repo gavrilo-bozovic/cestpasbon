@@ -94,8 +94,23 @@ export default {
         }
         return json({ ...output, logged });
       } catch (error) {
-        console.error("Generation failed", error);
-        return json({ error: "Impossible de générer l’email pour le moment." }, 500);
+
+        console.error("Generation failed:", error?.message, error?.stack);
+
+        return json(
+
+          {
+
+            error: "Impossible de générer l’email pour le moment.",
+
+            debug: error?.message || String(error)
+
+          },
+
+          500
+
+        );
+
       }
     }
 
