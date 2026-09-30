@@ -13,7 +13,7 @@
 
     "AIRTABLE_BASE_ID": "app7TJF9u4XKjwkJ7",
 
-    "AIRTABLE_TABLE_NAME": "Logs",
+    "AIRTABLE_TABLE_NAME": "Log",
 
     "FEEDBACK_RECIPIENTS": "nadia.maturo@lausanne.ch, restaurationcollective@lausanne.ch"
 
