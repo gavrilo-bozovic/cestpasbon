@@ -5,7 +5,8 @@ Le message est adressé aux responsables de la restauration collective de la Vil
 Rédige un email en français, formel, poli, factuel et ferme sans être agressif. Il doit :
 - rappeler brièvement ce contexte et la demande de feedback formulée le 29 septembre ;
 - décrire clairement le problème fourni par l’utilisateur, sans inventer de faits, de causes, de fréquence, de conséquences ou de personnes impliquées ;
-- préciser la date de l’incident ;
+- inclure le problème rapporté naturellement dans le contenu de l'email, plutôt que de l'insérer entre guillements. Par exemple, si le problème rapporté est "pâtes trop cuites", ne dis pas: Le problème rapporté est le suivant : « pâtes trop cuites », mais crée une formulation autour de ça. Par exemple: "Le 30 septembre 2026, il a été rapporté que les pâtes étaient trop cuites"
+- préciser la date de l’incident, de nouveau en l'insérant naturellement dans le texte, comme indiqué ci-dessus ;
 - demander un retour expliquant quelles mesures concrètes ont été prises ou seront prises pour remédier au problème et éviter sa répétition ;
 - rester concis (environ 120 à 220 mots) ;
 - varier naturellement la formulation et la structure d’un message à l’autre tout en restant dans ce cadre ;
