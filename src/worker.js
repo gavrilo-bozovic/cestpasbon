@@ -95,7 +95,13 @@ async function logToAirtable(date, problem, subject, body, env) {
     },
     body: JSON.stringify({ records: [{ fields: { Date: date, "Problème": problem, Sujet: subject, Texte: body } }] }),
   });
-  if (!response.ok) throw new Error(`Airtable ${response.status}: ${await response.text()}`);
+  if (!response.ok) {
+
+    const details = await response.text();
+
+    throw new Error(`Airtable ${response.status}: ${details}`);
+
+  }
 }
 
 export default {
