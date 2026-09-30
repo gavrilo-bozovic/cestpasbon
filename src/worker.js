@@ -121,10 +121,21 @@ export default {
         const output = await generateEmail(date, problem, env);
         let logged = true;
         try {
-          await logToAirtable(date, problem, output.subject, output.body, env);
+
+          await saveToAirtable(...);
+
         } catch (error) {
-          logged = false;
-          console.error("Airtable logging failed", error);
+
+          console.error(
+
+            "Airtable logging failed:",
+
+            error?.message,
+
+            error?.stack
+
+          );
+
         }
         return json({ ...output, logged });
       } catch (error) {
