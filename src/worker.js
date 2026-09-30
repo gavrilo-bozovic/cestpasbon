@@ -11,7 +11,13 @@ Rédige un email en français, formel, poli, factuel et ferme sans être agressi
 - varier naturellement la formulation et la structure d’un message à l’autre tout en restant dans ce cadre ;
 - ne pas inventer le nom de l’expéditeur ; terminer par une formule de politesse neutre, sans signature nominative.
 
-Retourne UNIQUEMENT un objet JSON valide sous la forme {"subject":"...","body":"..."}. Le sujet doit être descriptif, sobre et inclure si possible la date et la nature générale du problème.`;
+Retourne UNIQUEMENT un objet JSON valide sous la forme {"subject":"...","body":"..."}. Le sujet doit être descriptif, sobre et inclure si possible la date et la nature générale du problème.
+
+Réponds exclusivement sous la forme d'un objet JSON valide avec exactement deux propriétés :
+
+"subject" : le sujet de l'email
+
+"body" : le corps complet de l'email`;
 
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
