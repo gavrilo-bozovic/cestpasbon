@@ -24,13 +24,12 @@
 <p class="note">Le bouton d’envoi n’envoie rien automatiquement : il ouvre votre application de messagerie avec le sujet, les destinataires et le texte préremplis.</p>
 </section></main>
 <script>
-const CONFIG={
-  apiEndpoint:"/api/generate",
-  recipients:["REMPLACER@lausanne.ch","REMPLACER@eldora.ch"]
-};
+const CONFIG={ apiEndpoint:"/api/generate" };
+let recipients=[];
 const $=id=>document.getElementById(id); const status=(m,e=false)=>{$("status").textContent=m;$("status").className="status"+(e?" error":"")};
 const localISODate=()=>{const d=new Date(),off=d.getTimezoneOffset();return new Date(d.getTime()-off*60000).toISOString().slice(0,10)};
 $("date").value=localISODate();
+fetch("/api/config").then(r=>r.ok?r.json():Promise.reject()).then(c=>{recipients=c.recipients||[]}).catch(()=>{});
 $("generate").onclick=async()=>{const problem=$("problem").value.trim(),date=$("date").value;if(!problem)return status("Décrivez d’abord le problème rapporté.",true);$("generate").disabled=true;status("Génération en cours…");try{const r=await fetch(CONFIG.apiEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({date,problem})});const data=await r.json();if(!r.ok)throw new Error(data.error||"Erreur lors de la génération");$("email").value=data.body;$("email").dataset.subject=data.subject;status(data.logged===false?"Email généré. Attention : l’enregistrement Airtable a échoué.":"Email généré et feedback enregistré.");}catch(e){status(e.message,true)}finally{$("generate").disabled=false}};
-$("send").onclick=()=>{const body=$("email").value.trim();if(!body)return status("Générez ou saisissez d’abord le texte de l’email.",true);const subject=$("email").dataset.subject||"Feedback restauration — APEMS de Côteau-Fleuri";const url=`mailto:${CONFIG.recipients.join(",")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;window.location.href=url};
+$("send").onclick=()=>{const body=$("email").value.trim();if(!body)return status("Générez ou saisissez d’abord le texte de l’email.",true);const subject=$("email").dataset.subject||"Feedback restauration — APEMS de Côteau-Fleuri";if(!recipients.length)return status("Les destinataires ne sont pas encore configurés.",true);const url=`mailto:${recipients.join(",")}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;window.location.href=url};
 </script></body></html>
