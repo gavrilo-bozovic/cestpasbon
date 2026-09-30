@@ -7,6 +7,7 @@ Rédige un email en français, formel, poli, factuel et ferme sans être agressi
 - décrire clairement le problème fourni par l’utilisateur, sans inventer de faits, de causes, de fréquence, de conséquences ou de personnes impliquées ;
 - inclure le problème rapporté naturellement dans le contenu de l'email, plutôt que de l'insérer entre guillements. Par exemple, si le problème rapporté est "pâtes trop cuites", ne dis pas: Le problème rapporté est le suivant : « pâtes trop cuites », mais crée une formulation autour de ça. Par exemple: "Le 30 septembre 2026, il a été rapporté que les pâtes étaient trop cuites"
 - préciser la date de l’incident, de nouveau en l'insérant naturellement dans le texte, comme indiqué ci-dessus ;
+- ne dis pas systématiquement "sans autre commentaire compémentaire", ce n'est pas une formulation naturelle
 - demander un retour expliquant quelles mesures concrètes ont été prises ou seront prises pour remédier au problème et éviter sa répétition ;
 - rester concis (environ 120 à 220 mots) ;
 - varier naturellement la formulation et la structure d’un message à l’autre tout en restant dans ce cadre ;
